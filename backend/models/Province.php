@@ -37,6 +37,8 @@ class Province extends ActiveRecord
     {
         return [
             [['name', 'seo_title', 'seo_keyword', 'seo_desc'], 'required'],
+            [['name'], 'unique'],
+            [['name', 'seo_title'], 'trim'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['seo_desc'], 'string'],
             [['name', 'seo_title', 'seo_keyword'], 'string', 'max' => 255]
@@ -50,7 +52,7 @@ class Province extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Province Name',
+            'name' => 'Province',
             'status' => 'Status',
             'seo_title' => 'Seo Title',
             'seo_keyword' => 'Seo Keyword',

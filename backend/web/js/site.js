@@ -74,24 +74,3 @@ function changeTown(town, location){
     });
     town.trigger('change');
 }
-
-
-// get city list by provinceId
-    public static function getCityList($provinceId)
-    {
-        return self::find()->select(['id', 'name'])
-                        ->where(['status' => 1, 'province_id' => $provinceId])
-                        ->orderBy(['name' => 'DESC'])
-                        ->asArray()
-                        ->all();
-    }
-
-    // get default city option
-    public static function getDefaultCityOption($id)
-    {
-        $city = self::findOne($id);
-
-        if(empty($city))    return ['0' => 'Please Choose Province'];
-        
-        return [$id => $city->name];
-    }

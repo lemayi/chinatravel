@@ -42,7 +42,6 @@ class City extends ActiveRecord
             [['name', 'province_id', 'seo_title', 'seo_keyword', 'seo_desc'], 'required'],
             [['seo_desc'], 'string'],
             [['name', 'seo_title', 'seo_keyword'], 'string', 'max' => 255],
-            [['name', 'seo_title', 'seo_keyword'], 'on' => 'search'],
         ];
     }
 

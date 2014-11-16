@@ -14,6 +14,7 @@ $js = <<<JS
         initSelect($("#city-province_id"), '', '', '');
     });
 JS;
+
 $this->registerJs($js, View::POS_END);
 
 ?>
