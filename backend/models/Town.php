@@ -92,4 +92,20 @@ class Town extends ActiveRecord
                 return 'Disable';
         }
     }
+
+    // get town list by city id
+    public static function getTownList($cityId)
+    {
+        $data =  self::find()->select(['id', 'name'])
+                        ->where(['status' => 1, 'city_id' => $cityId])
+                        ->orderBy(['name' => 'DESC'])
+                        ->asArray()
+                        ->all();
+        $array[0] = 'Please Select the Town';
+        foreach($data as $val){
+            $array[$val['id']] = $val['name'];
+        }
+
+        return $array;
+    }
 }

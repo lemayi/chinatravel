@@ -5,7 +5,6 @@ namespace backend\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "province".
@@ -101,7 +100,13 @@ class Province extends ActiveRecord
                                 ->orderBy(['name' => 'DESC'])
                                 ->asArray()
                                 ->all();
-        return ArrayHelper::map($data, 'id', 'name');
+        
+        $array[0] = 'Please Select the Province';
+        foreach($data as $val){
+            $array[$val['id']] = $val['name'];
+        }
+
+        return $array;
     }
 
     // get default province option
@@ -114,12 +119,4 @@ class Province extends ActiveRecord
         return [$id => $province->name];
     }
 
-    // get province name
-    public static function getProvinceName($id){
-        if (($model = Province::findOne($id)) !== null) {
-            return $model->name;
-        }
-
-        return '';
-    }
 }

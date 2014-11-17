@@ -106,21 +106,17 @@ class City extends ActiveRecord
     // get city list by provinceId
     public static function getCityList($provinceId)
     {
-        return self::find()->select(['id', 'name'])
+        $data =  self::find()->select(['id', 'name'])
                         ->where(['status' => 1, 'province_id' => $provinceId])
                         ->orderBy(['name' => 'DESC'])
                         ->asArray()
                         ->all();
-    }
+        $array[0] = 'Please Select the City';
+        foreach($data as $val){
+            $array[$val['id']] = $val['name'];
+        }
 
-    // get default city option
-    public static function getDefaultCityOption($id)
-    {
-        $city = self::findOne($id);
-
-        if(empty($city))    return ['0' => 'Please Choose Province'];
-        
-        return [$id => $city->name];
+        return $array;
     }
 
 }

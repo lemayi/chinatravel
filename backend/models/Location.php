@@ -41,7 +41,7 @@ class Location extends ActiveRecord
     {
         return [
             [['province_id', 'city_id', 'town_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'seo_title', 'seo_keyword', 'seo_desc', 'created_at', 'updated_at'], 'required'],
+            [['name', 'seo_title', 'seo_keyword', 'seo_desc'], 'required'],
             [['seo_desc'], 'string'],
             [['name'], 'string', 'max' => 100],
             [['seo_title', 'seo_keyword'], 'string', 'max' => 255]

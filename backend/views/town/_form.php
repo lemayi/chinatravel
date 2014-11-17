@@ -12,20 +12,20 @@ use backend\models\City;
 
 $js = <<<JS
     $(function () {
-        initSelect($("#town-province_id"), $("#town-city_id"),'');
+        changeProvince($("#town-province_id"), $("#town-city_id"), '', '');
     });
 JS;
-$this->registerJs($js, View::POS_END);
 
+$this->registerJs($js, View::POS_END);
 ?>
 
 <div class="town-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'province_id')->dropDownList(Province::getDefaultProvinceOption($model->province_id)) ?>
+    <?= $form->field($model, 'province_id')->dropDownList(Province::getProvinceList()) ?>
 
-    <?= $form->field($model, 'city_id')->dropDownList(City::getDefaultCityOption($model->city_id)) ?>
+    <?= $form->field($model, 'city_id')->dropDownList(City::getCityList($model->province_id)) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 

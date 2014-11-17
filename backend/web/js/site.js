@@ -1,18 +1,3 @@
-function initSelect(province, city, town, location){
-    if(0 == province.length) return false;
-
-    var provinceValue = province.find("option:first").val();
-    $.getJSON("/province/provinces", '', function(data) {
-        $.each(data, function(key, value) {
-            if(provinceValue != value.id){
-                province.append('<option value="' + value.id + '">' + value.name + '</option>');
-            }
-        });
-    });
-
-    changeProvince(province, city, town, location);
-}
-
 function changeProvince(province, city, town, location){
     if(0 == province.length) return false;
     
@@ -21,18 +6,15 @@ function changeProvince(province, city, town, location){
         // change city
         if(0 == city.length) return false;
         city.empty();
-        var cityValue = city.find("option:first").val();
+        city.append('<option value="0">loding......</option>');
         $.getJSON("/city/cities", {'id':id}, function(data) {
+            city.empty();
             $.each(data, function(key, value) {
-                if(cityValue != value.id){
-                    city.append('<option value="' + value.id + '">' + value.name + '</option>');
-                }
+                city.append('<option value="' + key + '">' + value + '</option>');
             });
         });
         changeCity(city, town, location);
     });
-
-    province.trigger('change');
 }
 
 function changeCity(city, town, location){
@@ -43,18 +25,14 @@ function changeCity(city, town, location){
         // change town
         if(0 == town.length) return false;
         town.empty();
-        var townValue = town.find("option:first").val();
         $.getJSON("/town/towns", {'id':id}, function(data) {
+            town.empty();
             $.each(data, function(key, value) {
-                if(cityValue != value.id){
-                    town.append('<option value="' + value.id + '">' + value.name + '</option>');
-                }
+                    town.append('<option value="' + key + '">' + value + '</option>');
             });
         });
         changeTown(town, location);
     });
-
-    city.trigger('change');
 }
 
 function changeTown(town, location){
@@ -72,5 +50,4 @@ function changeTown(town, location){
             });
         });
     });
-    town.trigger('change');
 }

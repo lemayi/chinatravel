@@ -103,6 +103,13 @@ class TownController extends Controller
         return $this->redirect(['index']);
     }
 
+    // ajax change towns
+    public function actionTowns($id)
+    {
+        echo json_encode(Town::getTownList($id));
+        die;
+    }
+
     /**
      * Finds the Town model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
