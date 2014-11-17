@@ -3,19 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\models\Province;
-use yii\helpers\ArrayHelper;
-use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\City */
 /* @var $form yii\widgets\ActiveForm */
-$js = <<<JS
-    $(function () {
-        initSelect($("#city-province_id"), '', '', '');
-    });
-JS;
-
-$this->registerJs($js, View::POS_END);
 
 ?>
 
@@ -24,7 +15,7 @@ $this->registerJs($js, View::POS_END);
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'province_id')->dropDownList([]) ?>
+    <?= $form->field($model, 'province_id')->dropDownList(Province::getProvinceList()) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 
