@@ -2,17 +2,16 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use backend\models\Province;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CitySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cities';
+$this->title = 'City List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="city-index">
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create City', ['create'], ['class' => 'btn btn-success']) ?>
@@ -23,7 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            'province_id',
+            [
+                'attribute' => 'province_id',
+                'format' => 'html',
+                'value'=>function ($data) {
+                            return Html::a(Province::getProvinceName($data->province_id), ['update', 'id' => $data->id]);
+                        },
+            ],
             [
                 'attribute' => 'name',
                 'format' => 'html',
@@ -37,26 +42,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>function ($data) {
                             if(1 == $data->status){
                                 return Html::tag('span', ' ', ['class' => 'label label-success glyphicon glyphicon-ok']);
-                                // return '<span class="glyphicon glyphicon-ok"></span>';
                             }else if(2 == $data->status){
                                 return Html::tag('span', ' ', ['class' => 'label label-danger glyphicon glyphicon-remove']);
                             }
                         },
+                'filter'=> ['1' => 'Enable', '2' => 'Disable'],
             ],
-            [
-                'attribute' => 'created_at',
-                'value'=>function ($data) {
-                            return date('Y-m-d H:i:s', $data->created_at);
-                        },
+            [   
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{town} {view} {update} {delete}',
+                'buttons' => [
+                    'town' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-cloud"></span>', $url, [
+                                    'title' => Yii::t('yii', 'town List'),
+                                    'data-pjax' => '0',
+                        ]);
+                    }
+                ]
             ],
-            [
-                'attribute' => 'updated_at',
-                'value'=>function ($data) {
-                            return date('Y-m-d H:i:s', $data->updated_at);
-                        },
-            ],
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

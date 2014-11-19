@@ -110,6 +110,12 @@ class CityController extends Controller
         die;
     }
 
+    // town list
+    public function actionTown($id)
+    {
+        return $this->redirect(['town/index', 'TownSearch' => ['city_id'=>$id]]);
+    }
+
     /**
      * Finds the City model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

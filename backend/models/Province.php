@@ -109,14 +109,14 @@ class Province extends ActiveRecord
         return $array;
     }
 
-    // get default province option
-    public static function getDefaultProvinceOption($id)
+    // get province name
+    public static function getProvinceName($id)
     {
-        $province = self::findOne($id);
-
-        if(empty($province))    return ['0' => 'Please Choose Province'];
-        
-        return [$id => $province->name];
+        if (($model = Province::findOne($id)) !== null) {
+            return $model->name;
+        } else {
+            return '';
+        }
     }
 
 }

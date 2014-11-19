@@ -53,7 +53,7 @@ class City extends ActiveRecord
         return [
             'id' => 'ID',
             'province_id' => 'Province',
-            'name' => 'Name',
+            'name' => 'City',
             'status' => 'Status',
             'seo_title' => 'Seo Title',
             'seo_keyword' => 'Seo Keyword',

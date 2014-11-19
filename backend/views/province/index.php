@@ -39,19 +39,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
             ],
             [
-                'attribute' => 'created_at',
-                'value'=>function ($data) {
-                            return date('Y-m-d H:i:s', $data->created_at);
-                        },
+                'attribute'=>'created_at', 
+                'format'=>['date', 'php:Y-m-d H:i:s'],
             ],
             [
-                'attribute' => 'updated_at',
-                'value'=>function ($data) {
-                            return date('Y-m-d H:i:s', $data->updated_at);
-                        },
+                'attribute'=>'updated_at', 
+                'format'=>['date', 'php:Y-m-d H:i:s'],
             ],
             [   
-                'class' => 'yii\grid\ActionColumn'
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{city} {view} {update} {delete}',
+                'buttons' => [
+                    'city' => function ($url, $model) {
+                        return Html::a('<span class="glyphicon glyphicon-cloud"></span>', $url, [
+                                    'title' => Yii::t('yii', 'City List'),
+                                    'data-pjax' => '0',
+                        ]);
+                    }
+                ]
             ],
         ],
     ]); ?>

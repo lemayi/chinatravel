@@ -111,6 +111,12 @@ class ProvinceController extends Controller
         die;
     }
 
+    // city list
+    public function actionCity($id)
+    {
+        return $this->redirect(['city/index', 'CitySearch' => ['province_id'=>$id]]);
+    }
+
     /**
      * Finds the Province model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
