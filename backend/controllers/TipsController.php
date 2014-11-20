@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Province;
-use yii\data\ActiveDataProvider;
+use app\models\Tips;
+use app\models\TipsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProvinceController implements the CRUD actions for Province model.
+ * TipsController implements the CRUD actions for Tips model.
  */
-class ProvinceController extends Controller
+class TipsController extends Controller
 {
     public function behaviors()
     {
@@ -27,24 +27,22 @@ class ProvinceController extends Controller
     }
 
     /**
-     * Lists all Province models.
+     * Lists all Tips models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Province::find(),
-        ]);
-// echo '<pre>';
-// print_r($dataProvider);die;
+        $searchModel = new TipsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Province model.
+     * Displays a single Tips model.
      * @param integer $id
      * @return mixed
      */
@@ -56,13 +54,14 @@ class ProvinceController extends Controller
     }
 
     /**
-     * Creates a new Province model.
+     * Creates a new Tips model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Province();
+        $model = new Tips();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -73,7 +72,7 @@ class ProvinceController extends Controller
     }
 
     /**
-     * Updates an existing Province model.
+     * Updates an existing Tips model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -92,7 +91,7 @@ class ProvinceController extends Controller
     }
 
     /**
-     * Deletes an existing Province model.
+     * Deletes an existing Tips model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,35 +103,16 @@ class ProvinceController extends Controller
         return $this->redirect(['index']);
     }
 
-    // ajax change province
-    public function actionProvinces()
-    {
-        echo json_encode(Province::getProvinceList());
-        die;
-    }
-
-    // city list
-    public function actionCity($id)
-    {
-        return $this->redirect(['city/index', 'CitySearch' => ['province_id'=>$id]]);
-    }
-
-    // tips class list
-    public function actionTips($id)
-    {
-        return $this->redirect(['tipsclass/index', 'Search' => ['province_id'=>$id]]);
-    }
-
     /**
-     * Finds the Province model based on its primary key value.
+     * Finds the Tips model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Province the loaded model
+     * @return Tips the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Province::findOne($id)) !== null) {
+        if (($model = Tips::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

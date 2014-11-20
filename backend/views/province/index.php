@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\CheckboxColumn;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -48,15 +49,40 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [   
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{city} {view} {update} {delete}',
+                'template' => '{city} {tips} {view} {update} {delete}',
                 'buttons' => [
                     'city' => function ($url, $model) {
-                        return Html::a('<span class="glyphicon glyphicon-cloud"></span>', $url, [
+                        return Html::a('Cities', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
-                    }
-                ]
+                    },
+                    'tips' => function ($url, $model) {
+                        return Html::a('Tips', $url, [
+                                    'title' => Yii::t('yii', 'City List'),
+                                    'data-pjax' => '0',
+                        ]);
+                    },
+                    'view' => function ($url, $model) {
+                        return Html::a('View', $url, [
+                                    'title' => Yii::t('yii', 'City List'),
+                                    'data-pjax' => '0',
+                        ]);
+                    },
+                    'update' => function ($url, $model) {
+                        return Html::a('Update', $url, [
+                                    'title' => Yii::t('yii', 'City List'),
+                                    'data-pjax' => '0',
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('Delete', $url, [
+                                    'title' => Yii::t('yii', 'City List'),
+                                    'data-pjax' => '0',
+                        ]);
+                    },
+                ],
+                'headerOptions' => ['width' => '20%'],
             ],
         ],
     ]); ?>

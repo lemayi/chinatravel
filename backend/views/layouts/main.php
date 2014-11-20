@@ -42,6 +42,7 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'Town', 'url' => ['/town']];
                 $menuItems[] = ['label' => 'Location', 'url' => ['/location']];
                 $menuItems[] = ['label' => 'Spot', 'url' => ['/spot']];
+                $menuItems[] = ['label' => 'Tips', 'url' => ['/tips']];
                 $menuItems[] = [
                     'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
