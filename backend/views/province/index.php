@@ -52,25 +52,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{city} {tips} {view} {update} {delete}',
                 'buttons' => [
                     'city' => function ($url, $model) {
-                        return Html::a('<span class="label label-info">Cities</span>', $url, [
+                        return Html::a('<span class="label label-success">Cities</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'tips' => function ($url, $model) {
-                        return Html::a('<span class="label label-info">Tips</span>', $url, [
+                        return Html::a('<span class="label label-primary">Tips</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'view' => function ($url, $model) {
-                        return Html::a('<span class="label label-success">View</span>', $url, [
+                        return Html::a('<span class="label label-info">View</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'update' => function ($url, $model) {
-                        return Html::a('<span class="label label-primary">Update</span>', $url, [
+                        return Html::a('<span class="label label-warning">Update</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
