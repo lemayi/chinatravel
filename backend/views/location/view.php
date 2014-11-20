@@ -35,7 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'city_id',
             'town_id',
             'name',
-            'status',
+            [
+                'label' => 'Status',
+                'format' => 'raw',
+                'value' => (1 == $model->status) ? Html::tag('span', ' ', ['class' => 'label label-success glyphicon glyphicon-ok']) 
+                                                                          : Html::tag('span', ' ', ['class' => 'label label-danger glyphicon glyphicon-remove']),
+            ],
             'seo_title',
             'seo_keyword',
             'seo_desc:ntext',

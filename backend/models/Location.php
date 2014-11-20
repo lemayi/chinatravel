@@ -86,13 +86,4 @@ class Location extends ActiveRecord
         ];
     }
 
-    // status array
-    public static function getStatusById($status){
-        switch($status){
-            case self::STATUS_ENABLE: 
-                return 'Enable';
-            case self::STATUS_DISABLE:
-                return 'Disable';
-        }
-    }
 }

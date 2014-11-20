@@ -34,6 +34,9 @@ class ProvinceController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Province::find(),
+            'pagination' => [
+                'pageSize' => false,
+            ],
         ]);
 // echo '<pre>';
 // print_r($dataProvider);die;

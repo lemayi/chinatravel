@@ -52,37 +52,39 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{city} {tips} {view} {update} {delete}',
                 'buttons' => [
                     'city' => function ($url, $model) {
-                        return Html::a('Cities', $url, [
+                        return Html::a('<span class="label label-info">Cities</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'tips' => function ($url, $model) {
-                        return Html::a('Tips', $url, [
+                        return Html::a('<span class="label label-info">Tips</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'view' => function ($url, $model) {
-                        return Html::a('View', $url, [
+                        return Html::a('<span class="label label-success">View</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'update' => function ($url, $model) {
-                        return Html::a('Update', $url, [
+                        return Html::a('<span class="label label-primary">Update</span>', $url, [
                                     'title' => Yii::t('yii', 'City List'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'delete' => function ($url, $model) {
-                        return Html::a('Delete', $url, [
-                                    'title' => Yii::t('yii', 'City List'),
-                                    'data-pjax' => '0',
+                        return Html::a('<span class="label label-danger">Delete</span>', $url, [
+                            'title' => Yii::t('yii', 'Delete'),
+                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            'data-method' => 'post',
+                            'data-pjax' => '0',
                         ]);
                     },
                 ],
-                'headerOptions' => ['width' => '20%'],
+                'headerOptions' => ['width' => '25%'],
             ],
         ],
     ]); ?>

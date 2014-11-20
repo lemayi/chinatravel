@@ -80,18 +80,7 @@ class Province extends ActiveRecord
             self::STATUS_DISABLE   => 'Disable'
         ];
     }
-
-    // status array
-    public static function getStatusById($status)
-    {
-        switch($status){
-            case self::STATUS_ENABLE: 
-                return 'Enable';
-            case self::STATUS_DISABLE:
-                return 'Disable';
-        }
-    }
-
+    
     // get province list
     public static function getProvinceList()
     {
