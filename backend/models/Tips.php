@@ -1,8 +1,10 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "tips".
@@ -17,11 +19,11 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  */
-class Tips extends \yii\db\ActiveRecord
+class Tips extends ActiveRecord
 {
     const STATUS_ENABLE      = 1;
     const STATUS_DISABLE     = 2;
-    
+
     /**
      * @inheritdoc
      */
@@ -36,7 +38,7 @@ class Tips extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tips_class_id', 'title', 'intro', 'content', 'keyword', 'created_at', 'updated_at'], 'required'],
+            [['tips_class_id', 'title', 'intro', 'content', 'keyword'], 'required'],
             [['tips_class_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['intro', 'content'], 'string'],
             [['title', 'keyword'], 'string', 'max' => 255]
@@ -50,7 +52,7 @@ class Tips extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tips_class_id' => 'Tips Class ID',
+            'tips_class_id' => 'Tips Class',
             'title' => 'Title',
             'intro' => 'Intro',
             'content' => 'Content',
@@ -61,22 +63,22 @@ class Tips extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
+    // status array
     public static function getStatusArray()
     {
         return [
             self::STATUS_ENABLE    => 'Enable',
             self::STATUS_DISABLE   => 'Disable'
         ];
-    }
-
-    // status array
-    public static function getStatusById($status)
-    {
-        switch($status){
-            case self::STATUS_ENABLE: 
-                return 'Enable';
-            case self::STATUS_DISABLE:
-                return 'Disable';
-        }
     }
 }

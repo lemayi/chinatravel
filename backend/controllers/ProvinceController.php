@@ -38,9 +38,7 @@ class ProvinceController extends Controller
                 'pageSize' => false,
             ],
         ]);
-// echo '<pre>';
-// print_r($dataProvider);die;
-
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -121,9 +119,9 @@ class ProvinceController extends Controller
     }
 
     // tips class list
-    public function actionTips($id)
+    public function actionTipsclass($id)
     {
-        return $this->redirect(['tipsclass/index', 'Search' => ['province_id'=>$id]]);
+        return $this->redirect(['tipsclass/index', 'TipsClassSearch' => ['province_id'=>$id]]);
     }
 
     /**

@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use backend\models\TipsClass;
 
 /**
- * TipsClassSearch represents the model behind the search form about `app\models\TipsClass`.
+ * TipsClassSearch represents the model behind the search form about `backend\models\TipsClass`.
  */
 class TipsClassSearch extends TipsClass
 {
@@ -18,7 +18,7 @@ class TipsClassSearch extends TipsClass
     public function rules()
     {
         return [
-            [['id', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'province_id', 'city_id', 'town_id', 'location_id', 'spot_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'safe'],
         ];
     }
@@ -53,8 +53,12 @@ class TipsClassSearch extends TipsClass
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'province_id' => $this->province_id,
+            'city_id' => $this->city_id,
+            'town_id' => $this->town_id,
+            'location_id' => $this->location_id,
+            'spot_id' => $this->spot_id,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [   
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{city} {tips} {view} {update} {delete}',
+                'template' => '{city} {tipsclass} {view} {update} {delete}',
                 'buttons' => [
                     'city' => function ($url, $model) {
                         return Html::a('<span class="label label-success">Cities</span>', $url, [
@@ -57,21 +57,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'data-pjax' => '0',
                         ]);
                     },
-                    'tips' => function ($url, $model) {
-                        return Html::a('<span class="label label-primary">Tips</span>', $url, [
-                                    'title' => Yii::t('yii', 'City List'),
+                    'tipsclass' => function ($url, $model) {
+                        return Html::a('<span class="label label-primary">Tips Class</span>', $url, [
+                                    'title' => Yii::t('yii', 'Trip Class'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'view' => function ($url, $model) {
                         return Html::a('<span class="label label-info">View</span>', $url, [
-                                    'title' => Yii::t('yii', 'City List'),
+                                    'title' => Yii::t('yii', 'View'),
                                     'data-pjax' => '0',
                         ]);
                     },
                     'update' => function ($url, $model) {
                         return Html::a('<span class="label label-warning">Update</span>', $url, [
-                                    'title' => Yii::t('yii', 'City List'),
+                                    'title' => Yii::t('yii', 'Update'),
                                     'data-pjax' => '0',
                         ]);
                     },
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]);
                     },
                 ],
-                'headerOptions' => ['width' => '25%'],
+                'headerOptions' => ['width' => '30%'],
             ],
         ],
     ]); ?>

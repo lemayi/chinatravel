@@ -103,6 +103,12 @@ class TipsClassController extends Controller
         return $this->redirect(['index']);
     }
 
+    // tips list
+    public function actionTips($id)
+    {
+        return $this->redirect(['tips/index', 'TipsSearch' => ['tips_class_id'=>$id]]);
+    }
+
     /**
      * Finds the TipsClass model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
